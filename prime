@@ -1,0 +1,31 @@
+import math
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def diff(A):
+    primes = [x for x in A if is_prime(x)]
+    
+    if not primes:
+        return "No prime numbers in the array"
+    
+    smallest_prime = min(primes)
+    largest_prime = max(primes)
+    
+    return abs(largest_prime - smallest_prime)
+
+str1 = input("Enter the numbers separated by spaces: ")
+A = list(map(int, str1.split()))
+
+result = diff(A)
+
+print(result)
